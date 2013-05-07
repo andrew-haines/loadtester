@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>playfish_server.log</File>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <FileNamePattern>${LOG_DIR}/playfish.log.%i.zip</FileNamePattern>
+      <MinIndex>1</MinIndex>
+      <MaxIndex>3</MaxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>50MB</MaxFileSize>
+    </triggeringPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%X{requestId}] [%X{userId}] %-5level %class{36}:%line - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%X{requestId}] [%X{userId}] %-5level %class{36}:%line - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+  <logger name="org.mortbay.log" level="INFO"/>
+
+  <logger name="com.playfish.monitoring.stats" level="INFO"/>
+  <logger name="com.playfish.server" level="INFO"/>
+  <logger name="com.playfish.marlin" level="TRACE"/>
+  <logger name="com.playfish.shinobi" level="TRACE"/>"
+  <logger name="com.playfish.discovery.util.service.announcer" level="ERROR"/>
+  <root level="TRACE">
+    <appender-ref ref="FILE"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>
+
