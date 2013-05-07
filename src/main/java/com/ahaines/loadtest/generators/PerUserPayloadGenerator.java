@@ -9,7 +9,6 @@ public abstract class PerUserPayloadGenerator implements PayloadGenerator{
 	
 	private Iterable<Long> users;
 
-	@Override
 	public Map<Long, TestRun> getPayload() throws PayloadGenerationException {
 		Map<Long, TestRun> runners = new HashMap<Long, TestRun>();
 		
@@ -22,7 +21,6 @@ public abstract class PerUserPayloadGenerator implements PayloadGenerator{
 
 	protected abstract TestRun getTestRun(Long userId);
 
-	@Override
 	public void initGenerator(Iterable<Long> users) {
 		this.users = users;
 	}

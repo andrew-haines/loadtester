@@ -25,19 +25,16 @@ public class StaticPayLoadGenerator implements PayloadGenerator {
 		this.contentType = contentType;
 	}
 
-	@Override
 	public Map<Long, TestRun> getPayload() throws PayloadGenerationException {
 		Map<Long, TestRun> map = new HashMap<Long, TestRun>();
 		
 		for (Long fbUser: users){
 			map.put(fbUser, new TestRun(){
 
-				@Override
 				public boolean hasRequest(ResponseInfo response) {
 					return true;
 				}
 
-				@Override
 				public RequestInfo getRequest(ResponseInfo response) {
 					return new RequestInfo(RequestTypes.CONTENT_REQUEST, path, new byte[]{}, method, contentType);
 				}
@@ -48,7 +45,6 @@ public class StaticPayLoadGenerator implements PayloadGenerator {
 		return map;
 	}
 
-	@Override
 	public void initGenerator(Iterable<Long> userIds) {
 		this.users = userIds;
 	}
